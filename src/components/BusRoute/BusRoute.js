@@ -45,7 +45,7 @@ class BusRoute extends Component {
                 {this.props.showBus.map((bus,i) => {
                     return(
                         <option value={bus.Route} key={i}>
-                            {bus.Description} - {bus.Route}
+                            {bus.Description}
                         </option>
                         
                     )

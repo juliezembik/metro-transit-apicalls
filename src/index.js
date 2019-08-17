@@ -47,9 +47,8 @@ function* secondBus(action) {
 
         console.log('response', response);
         
-
-        // console.log('return from direction get', response.data);
-        
+        const nextAction = { type: 'SET_BUS_DIRECTION', payload: response.data}
+        yield put(nextAction);
         
     } catch (error) {
         console.log('Error in Bus Direction', error);
