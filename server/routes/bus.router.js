@@ -7,7 +7,7 @@ const axios = require("axios");
 const BASE_URL = "http://svc.metrotransit.org/NexTrip/Routes?format=json";
 
 //GET ALL
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   axios({
     method: "GET",
     url: `${BASE_URL}`

@@ -12,24 +12,16 @@ import { takeEvery, put } from 'redux-saga/effects'
 import axios from 'axios';
 
 
+// Sagas start here
+
 function* rootSaga() {
     yield takeEvery('FETCH_BUS', firstBus);
+    yield takeEvery('FETCH_DIRECTION', secondBus);
 }
 
 
-const displayBus = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_BUS_DISPLAY':
-            console.log(action.payload);
-            return action.payload;
-        default:
-            return state;
-    }
 
-};
-
-
-function* firstBus(action) {
+function* firstBus() {
 
     // replaces the need for .then and .catch
     try {
@@ -43,20 +35,65 @@ function* firstBus(action) {
         console.log('Error making GET request', error);
         alert('there was a problem');
     }
-}
+};
+
+function* secondBus(action) {
+
+    try {
+        const response = yield axios.get('/api/busdirection');
+
+
+        // console.log('return from direction get', response.data);
+        
+        
+    } catch (error) {
+        console.log('Error in Bus Direction', error);
+        
+    }
+};
+
 
 
 const sagaMiddleware = createSagaMiddleware();
+// Sagas end here
+
+
+
+// Reducers start here
+const displayBus = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_BUS_DISPLAY':
+            console.log(action.payload);
+            return action.payload;
+        default:
+            return state;
+    }
+
+};
+
+const displayDirection = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_BUS_DIRECTION':
+            console.log(action.payload);
+            return action.payload;
+        default:
+            return state;
+    }
+};
 
 const store = createStore(
     combineReducers({
 
-        displayBus
+        displayBus,
+        displayDirection
 
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
 );
+
+
+// Reducers end here
 
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);

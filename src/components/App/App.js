@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
-// import BusRouter from '../BusRouter/BusRouter';
-import BusDom from '../BusDom/BusDom';
+import BusRoute from '../BusRoute/BusRoute';
+import BusDirection from '../BusDirection/BusDirection';
 
 
 function App() {
   return (
     <div className="App">
-      {/* <BusRouter /> */}
-      <BusDom />
+      <p>Please Select Bus Number</p>
+      <BusRoute />
+
+      <p>Please Select Direction</p>
+      <BusDirection />
     </div>
   );
 }
