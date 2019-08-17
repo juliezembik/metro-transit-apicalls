@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 class BusDirection extends Component {
@@ -12,4 +13,4 @@ class BusDirection extends Component {
 
 };
 
-export default BusDirection;
+export default connect()(BusDirection);

@@ -20,7 +20,7 @@ class BusRoute extends Component {
     };
 
     // sends dispatch to FETCH_BUS sagas to return routes/descriptions
-    getBus = () => {
+    getBus = (e) => {
         this.props.dispatch({ type: 'FETCH_BUS' });
     };
 
@@ -28,7 +28,6 @@ class BusRoute extends Component {
     // the results will go to next component BusDirection
     handleChange = (e) => {
         this.setState({ route: e.target.value });
-
     };
 
     handleDirection = () => {
@@ -52,6 +51,7 @@ class BusRoute extends Component {
                     )
                 })}
                 </select>
+                <button onClick={this.handleDirection}>Submit</button>
             </div>
         );
     }

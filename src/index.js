@@ -40,8 +40,13 @@ function* firstBus() {
 function* secondBus(action) {
 
     try {
-        const response = yield axios.get('/api/busdirection');
+        const busNumber = action.payload.route;
 
+        console.log('action.payload in secondBus', busNumber);
+        const response = yield axios.get(`/api/busdirection/${busNumber}`, busNumber);
+
+        console.log('response', response);
+        
 
         // console.log('return from direction get', response.data);
         

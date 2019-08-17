@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes used here
 app.use('/api/busroutes', busRouter);
-app.use('api/busdirection', busDirection);
+app.use('/api/busdirection', busDirection);
 
 
 // Will server static files

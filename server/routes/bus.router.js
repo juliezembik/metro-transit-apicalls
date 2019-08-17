@@ -10,7 +10,7 @@ const BASE_URL = "http://svc.metrotransit.org/NexTrip/Routes?format=json";
 router.get('/', (req, res) => {
   axios({
     method: "GET",
-    url: `${BASE_URL}`
+    url: `${BASE_URL}`,
   })
     .then(response => {
       console.log("this is response", response.data);
