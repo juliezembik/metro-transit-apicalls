@@ -9,14 +9,14 @@ const BASE_URL = "http://svc.metrotransit.org/NexTrip/Stops";
 
 
 //Get Directions for specific bus route in :id
-router.get(`/:id`, (req, res) => {
+router.get(`/:route/:direction`, (req, res) => {
 
-    let busNumber = req.params.id.busroute;
-    let direction = req.params.id.direct;
+    let route = req.params.route;
+    let direction = req.params.direction;
 
     axios({
         method: "GET",
-        url: `${BASE_URL}/${busNumber}/${direction}`,
+        url: `${BASE_URL}/${route}/${direction}`,
     })
         .then(response => {
             console.log("this is response", response.data);

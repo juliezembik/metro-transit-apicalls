@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import BusRoute from "../BusRoute/BusRoute";
 import BusDirection from "../BusDirection/BusDirection";
+import BusStop from "../BusStop/BusStop";
 
 class App extends Component {
 
@@ -24,6 +25,9 @@ class App extends Component {
 
         <p>Please Select Direction</p>
         <BusDirection />
+
+        <p>Please Select Stop</p>
+        <BusStop />
       </div>
     );
   };

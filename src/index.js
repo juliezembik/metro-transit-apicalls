@@ -18,6 +18,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_BUS', firstBus);
     yield takeEvery('FETCH_DIRECTION', secondBus);
     yield takeEvery('FETCH_STOP', thirdBus);
+    yield takeEvery('FETCH_TIME', fourthBus);
 };
 
 
@@ -46,7 +47,7 @@ function* secondBus(action) {
         console.log('action.payload in secondBus', busNumber);
         const response = yield axios.get(`/api/busdirection/${busNumber}`, busNumber);
 
-        console.log('response', response);
+        // console.log('response', response);
         
         const nextAction = { type: 'SET_BUS_DIRECTION', payload: response.data};
         yield put(nextAction);
@@ -59,13 +60,36 @@ function* secondBus(action) {
 
 function* thirdBus(action) {
     try {
-        const 
-    } catch (error) {
+        const route = action.payload.route;
+        const direction = action.payload.direction;
 
+        const response = yield axios.get(`/api/busstop/${route}/${direction}`);
+
+        const nextAction = { type: 'SET_STOP', payload: response.data };
+        yield put(nextAction);
+
+    } catch (error) {
+        console.log('Error in thirdBus', error);
+        
     }
 };
 
+function* fourthBus(action) {
+    try {
+        const route = action.payload.route;
+        const direction = action.payload.direction;
+        const stop = action.payload.stop;
 
+        const response = yield axios.get(`/api/time/${route}/${direction}/${stop}`);
+
+        const nextAction = { type: 'SET_TIME', payload: response.data };
+        yield put(nextAction);
+
+    } catch (error) {
+        console.log('Error in fourthBus', error);
+        
+    }
+}
 
 
 
@@ -99,6 +123,30 @@ const displayDirection = (state = [], action) => {
     }
 };
 
+const displayStop = ( state = [], action ) => {
+    switch (action.type) {
+        case 'SET_STOP':
+            console.log('in SET_STOP', action.payload);
+            return action.payload;
+        
+        default:
+            return state;
+    }
+};
+
+const displayTime = ( state = [], action ) => {
+    switch (action.type) {
+        case 'SET_TIME':
+            console.log('in SET_TIME', action.payload);
+            return action.payload;
+        
+        default:
+            return state;
+        
+    }
+}
+
+
 const inputs = { route: null, direction: null, stop: null }
 const saveAllInputs = (state = inputs, action) => {
     switch(action.type) {
@@ -110,7 +158,7 @@ const saveAllInputs = (state = inputs, action) => {
                 return  {...state, direction: action.payload.direction } ;
         case 'SAVE_STOP': 
             console.log('in SAVE_STOP', action.payload);
-                return  {...state, stop: action.payload } ;
+                return  {...state, stop: action.payload.stop } ;
         case 'CLEAR_INPUTS':
             return inputs;
         default:
@@ -124,6 +172,8 @@ const store = createStore(
 
         displayBuses,
         displayDirection,
+        displayStop,
+        displayTime,
         saveAllInputs
 
     }),
