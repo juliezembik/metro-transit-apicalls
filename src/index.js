@@ -80,7 +80,7 @@ function* fourthBus(action) {
         const direction = action.payload.direction;
         const stop = action.payload.stop;
 
-        const response = yield axios.get(`/api/time/${route}/${direction}/${stop}`);
+        const response = yield axios.get(`/api/bustime/${route}/${direction}/${stop}`);
 
         const nextAction = { type: 'SET_TIME', payload: response.data };
         yield put(nextAction);

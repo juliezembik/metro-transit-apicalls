@@ -3,19 +3,9 @@ import "./App.css";
 import BusRoute from "../BusRoute/BusRoute";
 import BusDirection from "../BusDirection/BusDirection";
 import BusStop from "../BusStop/BusStop";
+import BusTime from "../BusTime/BusTime";
 
 class App extends Component {
-
-  constructor(){
-    super();
-    this.state = {
-      route: '',
-      direction: '',
-      stop: ''
-
-    }
-  }
-
 
   render() {
     return (
@@ -28,6 +18,10 @@ class App extends Component {
 
         <p>Please Select Stop</p>
         <BusStop />
+
+        <p>Time Displays Here:</p>
+        <BusTime />
+
       </div>
     );
   };
