@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-const moment = require ('moment');
+import HoldBus from './HoldBus.js';
+import HoldNextBus from './HoldNextBus.js';
 
 
 class BusTime extends Component {
@@ -9,16 +9,16 @@ class BusTime extends Component {
     render () {
         return (
             <div>
-                {JSON.stringify(this.props.showTime)}
+                {/* {JSON.stringify(this.props.showTime)} */}
                 {this.props.showTime.map((time, i) => {
                     if (time.Actual === true ) {
                         return (
-                        <p key={i}>Next time in: ${time.DepartureText}</p>
+                        <HoldBus key={i} upcomingBus={time.DepartureText}/>
                         )
                     } else if 
                         (time.Actual === false) {
                             return (
-                                <p key={i}>Next bus time in :${time.DepartureText}</p>
+                                <HoldNextBus key={i} nextBus={time.DepartureText} />
                             );
                         };
                     }

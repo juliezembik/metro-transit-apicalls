@@ -36,8 +36,8 @@ class BusDirection extends Component {
   render() {
     return (
       <div>
-            {JSON.stringify(this.props.showDirection)}
-            {JSON.stringify(this.state.direction)}
+            {/* {JSON.stringify(this.props.showDirection)}
+            {JSON.stringify(this.state.direction)} */}
         <select onChange={this.handleChange}>
           <option value="">Select</option>
           {this.props.showDirection.map((cardinal, i) => {
@@ -50,7 +50,6 @@ class BusDirection extends Component {
         </select>
         <button onClick={this.handleStop}>Submit</button>
 
-        {JSON.stringify(this.props.inputs)}
       </div>
     );
   }

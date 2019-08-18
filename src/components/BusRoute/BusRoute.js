@@ -45,7 +45,7 @@ class BusRoute extends Component {
     render () {
         return (
             <div>
-                {JSON.stringify(this.state)}
+                {/* {JSON.stringify(this.state)} */}
                 <select onChange={this.handleChange}>
                     <option value="">Select</option>
                 {this.props.showBuses.map((bus,i) => {
