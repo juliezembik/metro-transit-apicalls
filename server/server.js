@@ -9,6 +9,7 @@ const app = express();
 const busRouter = require('./routes/bus.router.js');
 const busDirection = require('./routes/bus.direction.js');
 const busStop = require('./routes/bus.stop.js');
+const busTime = require('./routes/bus.time.js');
 
 // Using bodyParser middleware
 app.use(bodyParser.json());
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/busroutes', busRouter);
 app.use('/api/busdirection', busDirection);
 app.use('/api/busstop', busStop);
+app.use('/api/bustime', busTime);
 
 
 // Will server static files
