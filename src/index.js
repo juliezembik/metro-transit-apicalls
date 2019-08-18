@@ -17,7 +17,8 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_BUS', firstBus);
     yield takeEvery('FETCH_DIRECTION', secondBus);
-}
+    yield takeEvery('FETCH_STOP', thirdBus);
+};
 
 
 
@@ -27,10 +28,10 @@ function* firstBus() {
     try {
         const response = yield axios.get('/api/busroutes');
         // same as dispatch
-        console.log(response.data)
-        const nextAction = { type: 'SET_BUS_DISPLAY', payload: response.data };
+        console.log('in firstBus', response.data)
+        const action = { type: 'SET_BUS_DISPLAY', payload: response.data };
+        yield put(action); // trigger our reducer
 
-        yield put(nextAction); // trigger our reducer
     } catch (error) {
         console.log('Error making GET request', error);
         alert('there was a problem');
@@ -47,7 +48,7 @@ function* secondBus(action) {
 
         console.log('response', response);
         
-        const nextAction = { type: 'SET_BUS_DIRECTION', payload: response.data}
+        const nextAction = { type: 'SET_BUS_DIRECTION', payload: response.data};
         yield put(nextAction);
         
     } catch (error) {
@@ -55,6 +56,19 @@ function* secondBus(action) {
         
     }
 };
+
+function* thirdBus(action) {
+    try {
+        const 
+    } catch (error) {
+
+    }
+};
+
+
+
+
+
 
 
 
@@ -64,10 +78,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 
 // Reducers start here
-const displayBus = (state = [], action) => {
+const displayBuses = (state = [], action) => {
     switch (action.type) {
         case 'SET_BUS_DISPLAY':
-            console.log(action.payload);
+            console.log('in SET_BUS_DISPLAY', action.payload);
             return action.payload;
         default:
             return state;
@@ -78,18 +92,39 @@ const displayBus = (state = [], action) => {
 const displayDirection = (state = [], action) => {
     switch (action.type) {
         case 'SET_BUS_DIRECTION':
-            console.log(action.payload);
+            console.log('in SET_BUS_DIRECTION', action.payload);
             return action.payload;
         default:
             return state;
     }
 };
 
+const inputs = { route: null, direction: null, stop: null }
+const saveAllInputs = (state = inputs, action) => {
+    switch(action.type) {
+        case 'SAVE_ROUTE': 
+            console.log('in SAVE_ROUTE', action.payload);
+                return  {...state , route: action.payload.route } ;
+        case 'SAVE_DIRECTION': 
+            console.log('in SAVE_DIRECTION', action.payload);
+                return  {...state, direction: action.payload.direction } ;
+        case 'SAVE_STOP': 
+            console.log('in SAVE_STOP', action.payload);
+                return  {...state, stop: action.payload } ;
+        case 'CLEAR_INPUTS':
+            return inputs;
+        default:
+            return state;
+    } 
+}
+
+
 const store = createStore(
     combineReducers({
 
-        displayBus,
-        displayDirection
+        displayBuses,
+        displayDirection,
+        saveAllInputs
 
     }),
     // Add sagaMiddleware to our store

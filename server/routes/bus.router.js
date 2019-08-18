@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     url: `${BASE_URL}`,
   })
     .then(response => {
-      console.log("this is response", response.data);
+      console.log("this is response in Routes", response.data);
         res.send(response.data);
       // res.sendStatus(200);
     })

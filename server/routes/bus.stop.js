@@ -4,21 +4,22 @@ const axios = require("axios");
 
 
 // Metro Transit HTTPS request URL
-const BASE_URL = "http://svc.metrotransit.org/NexTrip/Directions";
+const BASE_URL = "http://svc.metrotransit.org/NexTrip/Stops";
 
 
 
 //Get Directions for specific bus route in :id
 router.get(`/:id`, (req, res) => {
-    
-    let busNumber = req.params.id;
+
+    let busNumber = req.params.id.busroute;
+    let direction = req.params.id.direct;
 
     axios({
         method: "GET",
-        url: `${BASE_URL}/${busNumber}`,
-        })
+        url: `${BASE_URL}/${busNumber}/${direction}`,
+    })
         .then(response => {
-            console.log("this is response in Directions", response.data);
+            console.log("this is response", response.data);
             res.send(response.data);
             // res.sendStatus(200);
         })

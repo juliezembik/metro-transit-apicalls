@@ -8,8 +8,7 @@ class BusRoute extends Component {
         super(props);
         this.state = {
             route: '',
-        }
-        // this.handleChange = this.handleChange.bind(this);
+        };
     };
 
     
@@ -26,14 +25,21 @@ class BusRoute extends Component {
 
     // sends a dispatch to 'FETCH DIRECTION to show up in second select
     // the results will go to next component BusDirection
-    handleChange = (e) => {
-        this.setState({ route: e.target.value });
+    handleChange = (event) => {
+        this.setState({ route: event.target.value });
+        event.preventDefault();
     };
 
     handleDirection = () => {
-        const action = this.props.dispatch({ type: 'FETCH_DIRECTION', payload: this.state});
+        const action = { type: 'FETCH_DIRECTION', payload: this.state};
         this.props.dispatch(action);
+        this.saveToReducer();
         
+    };
+
+    saveToReducer = () => {
+        const action = { type: 'SAVE_ROUTE', payload: this.state};
+        this.props.dispatch(action);
     }
 
     render () {
@@ -42,7 +48,7 @@ class BusRoute extends Component {
                 {JSON.stringify(this.state)}
                 <select onChange={this.handleChange}>
                     <option value="">Select</option>
-                {this.props.showBus.map((bus,i) => {
+                {this.props.showBuses.map((bus,i) => {
                     return(
                         <option value={bus.Route} key={i}>
                             {bus.Description}
@@ -58,7 +64,8 @@ class BusRoute extends Component {
 };
 
 const mapStoreToProps = reduxStore => ({
-    showBus: reduxStore.displayBus
+    showBuses: reduxStore.displayBuses
 });
+
 
 export default connect(mapStoreToProps)(BusRoute);
