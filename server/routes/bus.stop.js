@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 
 
-// Metro Transit HTTPS request URL
+// Metro Transit HTTPS request URL for stops
 const BASE_URL = "http://svc.metrotransit.org/NexTrip/Stops";
 
 
