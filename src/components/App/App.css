@@ -31,3 +31,10 @@
     transform: rotate(360deg);
   }
 }
+
+.futurebus, .upcomingbus {
+  margin: 15px auto;
+  float: left;
+  justify-content: center;
+  text-align: center;
+}

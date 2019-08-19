@@ -14,8 +14,8 @@ class HoldBus extends Component {
     render() {
         return (
             <div>
-                Next Buses: 
                 {this.props.nextBus}
+
             </div>
         )
     }
