@@ -55,28 +55,35 @@ class BusRoute extends Component {
     }
 
 
+
     // this renders and maps over the bus route objects, to display
     // in a dropdown menu for the user to choose from.
     render () {
+
+        // Once a user selects their bus route onChange triggers to save
+        // route to state
+        const selectRoute =
+            this.props.showBuses.map((bus, i) => {
+                return (
+                    <option value={bus.Route} key={i}>
+                        {bus.Description}
+                    </option>
+
+                )
+            });
+
         return (
             <div>
+            <div className="buses">
                 {/* {JSON.stringify(this.state)} */}
-
-                {/* Once a user selects their bus route onChange triggers to save */}
-                {/* route to state */}
                 <select onChange={this.handleChange}>
                     <option value="">Select</option>
-                {this.props.showBuses.map((bus,i) => {
-                    return(
-                        <option value={bus.Route} key={i}>
-                            {bus.Description}
-                        </option>
-                        
-                    )
-                })}
+                    {selectRoute}
                 </select>
                 {/* onClick triggers handleDirection function to send state */}
-                <button onClick={this.handleDirection}>Submit</button>
+                    <button onClick={this.handleDirection}>Submit</button>
+            </div>
+
             </div>
         );
     }

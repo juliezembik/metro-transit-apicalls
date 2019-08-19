@@ -29,7 +29,6 @@ class App extends Component {
 
 
         {/* BusTime will display the list of bus times for specified bus stop */}
-        <p>Time Displays Here:</p>
         <BusTime />
 
       </div>

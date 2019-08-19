@@ -48,22 +48,26 @@ class BusStop extends Component {
     // this is our third and final drop down menu to select from
     // this will map over the proper stops for the selected route and directions
     render() {
+
+
+        const stop =
+            this.props.showStops.map((stops, i) => {
+                return (
+                    <option value={stops.Value} key={i}>
+                        {stops.Text}
+                    </option>
+
+                )
+            })
+
         return (
-            <div>
+            <div className="buses">
                 {/* {JSON.stringify(this.state)} */}
 
                 {/* onChange will change the state for stops */}
 
                 <select onChange={this.handleChange}>
-                    <option value="">Select</option>
-                    {this.props.showStops.map((stops, i) => {
-                        return (
-                            <option value={stops.Value} key={i}>
-                                {stops.Text}
-                            </option>
-
-                        )
-                    })}
+                    {stop.length ? stop : <option>Please Select Direction</option>}
                 </select>
 
                     {/* onClick will trigger to make the last API call to display the time */}

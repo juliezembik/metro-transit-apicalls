@@ -48,23 +48,24 @@ class BusDirection extends Component {
   // specified bus, this will be pulled from the metro transit API and will show only
   // the directions for its specific bus to minimize user error
   render() {
+
+    const direction =
+      this.props.showDirection.map((cardinal, i) => {
+        return (
+          // Should only display proper directions for specified bus routes
+          <option value={cardinal.Value} key={i}>
+            {cardinal.Text}
+          </option>
+        );
+      })
+
     return (
-      <div>
-            {/* {JSON.stringify(this.props.showDirection)}
-            {JSON.stringify(this.state.direction)} */}
+      <div className="buses">
 
             {/* onChange will trigger once user selects their direction to update state */}
 
         <select onChange={this.handleChange}>
-          <option value="">Select</option>
-          {this.props.showDirection.map((cardinal, i) => {
-            return (
-              // Should only display proper directions for specified bus routes
-              <option value={cardinal.Value} key={i}>
-                {cardinal.Text}
-              </option>
-            );
-          })}
+          {direction.length ? direction : <option>Please Select Route</option>}
         </select>
 
         {/* onClick will trigger handleStop on submit */}

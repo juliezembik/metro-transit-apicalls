@@ -37,4 +37,12 @@
   float: left;
   justify-content: center;
   text-align: center;
+  width: 50%;
+
+}
+
+.buses {
+  margin: 0px auto;
+  justify-content: center;
+
 }

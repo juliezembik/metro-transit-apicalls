@@ -14,33 +14,46 @@ class BusTime extends Component {
     // if actual is true, it will display the next bus in minutes
     // if actual is false, it will display the next buses ETA
     render () {
+
+        const nextBus = 
+            this.props.showTime.map((time, i) => {
+                if (time.Actual === true) {
+                    return (
+                        <div>
+                            <HoldBus key={i} upcomingBus={time.DepartureText} />
+                        </div>
+                    )
+                }
+
+            });
+
+        const futureBus = 
+            this.props.showTime.map((time, i) => {
+                if (time.Actual === false) {
+                    return (
+                        <div>
+                            <HoldNextBus key={i} nextBus={time.DepartureText} />
+                        </div>
+                    )
+                }
+            });
+        
+        
+
         return (
             <div>
                 <div className="upcomingbus">
                     <h2>The Next Bus</h2>
                     <h3>will arrive in:</h3>
-                {this.props.showTime.map((time, i) => {
-                    if (time.Actual === true ) {
-                        return (
-                        <div>
-                            <HoldBus key={i} upcomingBus={time.DepartureText}/>
-                        </div>
-                        )
-                    }})}
+                    {nextBus.length ? nextBus : <p>There is no bus at this time.</p>}
                 </div>
                 
                 <div className="futurebus">
                     <h2>Future Bus Times</h2>
-                {this.props.showTime.map((time, i) => {
-                    if (time.Actual === false) {
-                        return (
-                        <div>
-                            <HoldNextBus key={i} nextBus={time.DepartureText} />
-                        </div>
-                                )
-                            }  
-                        })}
+                {futureBus.length ? futureBus : <p>No future bus.</p>}
                 </div>
+
+                
 
                 {/* {JSON.stringify(this.props.showTime)} */}
             </div>
