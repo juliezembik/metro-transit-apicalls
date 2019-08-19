@@ -8,9 +8,10 @@ const BASE_URL = "http://svc.metrotransit.org/NexTrip/Stops";
 
 
 
-//Get Directions for specific bus route in :id
+//Get stop for specific bus route in :route & :direction
 router.get(`/:route/:direction`, (req, res) => {
 
+    // defined our route and direction variables here as done in bus.direction
     let route = req.params.route;
     let direction = req.params.direction;
 

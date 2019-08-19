@@ -3,15 +3,18 @@ const router = express.Router();
 const axios = require("axios");
 
 
-// Metro Transit HTTPS request URL
+// Metro Transit HTTPS request URL for directions
 const BASE_URL = "http://svc.metrotransit.org/NexTrip/Directions";
 
 
 
-//Get Directions for specific bus route in :id
-router.get(`/:id`, (req, res) => {
+//Get Directions for specific bus route in :route
+// in express :route is stored as req.params.[variable]
+// to utilize that data, it must be determined and sent from DOM side
+router.get(`/:route`, (req, res) => {
     
-    let busNumber = req.params.id;
+    // defined req.params.route for ease of usage
+    let busNumber = req.params.route;
 
     axios({
         method: "GET",

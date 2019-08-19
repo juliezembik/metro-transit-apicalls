@@ -6,7 +6,7 @@ const axios = require("axios");
 // Metro Transit HTTPS request URL
 const BASE_URL = "http://svc.metrotransit.org/NexTrip/Routes?format=json";
 
-//GET ALL
+// Gets all bus routes available and formatted in JSON
 router.get('/', (req, res) => {
   axios({
     method: "GET",
