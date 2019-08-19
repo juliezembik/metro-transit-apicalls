@@ -14,19 +14,20 @@ class App extends Component {
 
       //App Component holds and displays other components
       <div className="App">
-
+        <div className="menu-nav">
+          <h1>Check Your Bus Time</h1>
         {/* BusRoute will display the list of bus routes to choose from. */}
-        <p>Please Select Bus Route</p>
+        <p>Select Bus Route</p>
         <BusRoute />
 
         {/* BusDirection will pull only the needed list of directions for the specific route chosen */}
-        <p>Please Select Direction</p>
+        <p>Select Direction</p>
         <BusDirection />
 
         {/* Bus Stop will display the list of bus stops along specified route */}
-        <p>Please Select Stop</p>
+        <p>Select Stop</p>
         <BusStop />
-
+        </div>
 
         {/* BusTime will display the list of bus times for specified bus stop */}
         <BusTime />

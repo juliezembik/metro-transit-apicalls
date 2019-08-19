@@ -42,17 +42,18 @@ class BusTime extends Component {
 
         return (
             <div>
-                <div className="upcomingbus">
-                    <h2>The Next Bus</h2>
-                    <h3>will arrive in:</h3>
-                    {nextBus.length ? nextBus : <p>There is no bus at this time.</p>}
-                </div>
+                <div className="background-bus">
+                    <div className="upcomingbus">
+                        <h2>The Next Bus</h2>
+                        <h3>will arrive in:</h3>
+                            {nextBus.length ? nextBus : <p>There is no bus at this time.</p>}
+                    </div>
                 
-                <div className="futurebus">
-                    <h2>Future Bus Times</h2>
-                {futureBus.length ? futureBus : <p>No future bus.</p>}
+                    <div className="futurebus">
+                        <h2>Future Bus Times</h2>
+                            {futureBus.length ? futureBus : <p>No future bus.</p>}
+                    </div>
                 </div>
-
                 
 
                 {/* {JSON.stringify(this.props.showTime)} */}

@@ -65,7 +65,9 @@ class BusDirection extends Component {
             {/* onChange will trigger once user selects their direction to update state */}
 
         <select onChange={this.handleChange}>
-          {direction.length ? direction : <option>Please Select Route</option>}
+          <option>Select</option> 
+          {direction.length ? 
+            direction : <option>Please Select Route</option>}
         </select>
 
         {/* onClick will trigger handleStop on submit */}

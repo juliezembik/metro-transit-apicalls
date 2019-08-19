@@ -67,6 +67,7 @@ class BusStop extends Component {
                 {/* onChange will change the state for stops */}
 
                 <select onChange={this.handleChange}>
+                    <option>Select</option> 
                     {stop.length ? stop : <option>Please Select Direction</option>}
                 </select>
 
