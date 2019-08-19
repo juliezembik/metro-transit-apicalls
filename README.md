@@ -51,6 +51,17 @@ Once you have the necessary software, take these next steps -
 
 This should pull the project up through localhost:3000, connected to the server port at localhost:5000.
 
+### Known Bugs
+
+1. If a user selects a different bus route and the same cardinal directions remain displayed in drop down menu, the user must select the 'select' option before choosing their direction. This will reset the value and will make the proper call to grab the bus stops for that new bus route.
+2. In conjunction to 1, if user does not update their direction selection, this does not change the bus stops. If user clicks submit on the bus stop, it will return 'No Bus At This Time'.
+3. User must click the submit buttons for all drop down menus after selecting. Buttons will trigger the API call needed. Selecting will change state, however, previous state will still be available so clicking submit button will send the new state.
+
+### Must Know
+1. Each drop down menu selection must be submitted by clicking the submit button. Submit buttons trigger an API get call to fill the next drop down menu with data. Application will not move forward unless route is selected.
+2. Direction must be unselected and reselected for choosing a different route before submitting. If this is not done so, it will not append proper stops for the third drop down menu.
+3. 
+
 
 ### Gif of Project
 
