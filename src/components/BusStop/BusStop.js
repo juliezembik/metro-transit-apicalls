@@ -49,7 +49,9 @@ class BusStop extends Component {
     // this will map over the proper stops for the selected route and directions
     render() {
 
-
+        // stop will contain the map function for showStops reducer
+        // it will display all the information into an option tag
+        // within the select menu
         const stop =
             this.props.showStops.map((stops, i) => {
                 return (

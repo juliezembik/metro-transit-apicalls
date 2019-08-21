@@ -14,7 +14,8 @@ class BusTime extends Component {
     // if actual is true, it will display the next bus in minutes
     // if actual is false, it will display the next buses ETA
     render () {
-
+        // this will show the next bus if Actual within object is true.
+        // this will display the bus in minutes and displays on the left side of DOM
         const nextBus = 
             this.props.showTime.map((time, i) => {
                 if (time.Actual === true) {
@@ -27,6 +28,9 @@ class BusTime extends Component {
 
             });
 
+        
+        // futureBus will show the next busses if Actual within object is false
+        // will be displayed in HH:MM format on right side of DOM
         const futureBus = 
             this.props.showTime.map((time, i) => {
                 if (time.Actual === false) {
@@ -46,9 +50,12 @@ class BusTime extends Component {
                     <div className="upcomingbus">
                         <h2>The Next Bus</h2>
                         <h3>will arrive in:</h3>
+                        {/* conditionally renders if buses are available */}
                             {nextBus.length ? nextBus : <p>There is no bus at this time.</p>}
                     </div>
-                
+
+                        {/* conditionally renders if there is no future bus, typically for */}
+                        {/* busses that are not running anymore */}
                     <div className="futurebus">
                         <h2>Future Bus Times</h2>
                             {futureBus.length ? futureBus : <p>No future bus.</p>}
@@ -63,6 +70,7 @@ class BusTime extends Component {
     
 };
 
+// redux store that displays the time from fourth API call
 const mapStoreToProps = reduxStore => ({
     showTime: reduxStore.displayTime,
 });
